@@ -1,8 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"context"
-	"fmt"
+	"html/template"
 )
 
 // App struct
@@ -21,7 +22,17 @@ func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 }
 
-// Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
+func renderFile(path string, data any) string {
+	var buf bytes.Buffer
+	tmpl := template.Must(template.ParseFiles(path))
+	tmpl.Execute(&buf, data)
+	return buf.String()
+}
+
+type Message struct {
+	Text string
+}
+
+func (a *App) ReplaceLogo(message Message) string {
+	return renderFile("htmlTemplates/message.html", message)
 }
