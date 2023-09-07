@@ -4,31 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <script src="./src/assets/scripts/htmx-wails.js"></script>
+    <script src="./src/assets/scripts/htmx-wails.js" defer></script>
+    <script src="./src/main.js" type="module" defer></script>
     <link rel="stylesheet" href="./src/assets/styles/pico.css">
     <title>Image-Converter</title>
 </head>
 
-<body>
-    <div id="app">
+<body id="app" hx-trigger="load" hx-func="GetHomePage">
 
-
-        <div>
-            <div id="logoContainer">
-                <img id="logo" class="logo">
-            </div>
-            <div class="result" id="result">Please enter your name below 👇</div>
-            <form hx-func="ReplaceLogo" hx-target="#logoContainer" class="input-box" id="input">
-                <input name="Text" class="input" id="name" type="text" autocomplete="off" />
-                <button type="submit" class="btn">Greet</button>
-            </form>
-        </div>
-
-
-
-
-    </div>
-    <script src="./src/main.js" type="module"></script>
 </body>
 
 </html>

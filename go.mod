@@ -1,4 +1,4 @@
-module changeme
+module imageconverter
 
 go 1.18
 
