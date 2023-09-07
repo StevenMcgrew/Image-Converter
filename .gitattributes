@@ -1,1 +1,2 @@
 build/** linguist-vendored
+htmx-wails.js -linguist-vendored
