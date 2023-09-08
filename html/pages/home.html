@@ -1,8 +1,13 @@
-<div id="logoContainer">
-    <img id="logo" class="logo">
+<div class="page">
+    <form>
+        <fieldset>
+            <legend>Folder Selection</legend>
+            {{if }}
+            <label for="fruit">Recent Folders</label>
+            <select id="fruit" required>
+                <option value="" selected>rjkkrk</option>
+                <option>…</option>
+            </select>
+        </fieldset>
+    </form>
 </div>
-<div class="result" id="result">Please enter your name below 👇</div>
-<form hx-func="ReplaceLogo" hx-target="#logoContainer" class="input-box" id="input">
-    <input name="Text" class="input" id="name" type="text" autocomplete="off" />
-    <button type="submit" class="btn">Greet</button>
-</form>
