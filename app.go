@@ -32,6 +32,8 @@ Your code below here
 *************************************************
 */
 
+const STORE_PATH = "store.json"
+
 type UserPreferences struct {
 	FolderPaths         []string `json:"folderPaths"`
 	ConvertTo           string   `json:"convertTo"`
@@ -68,13 +70,27 @@ func getUserPreferences(path string) UserPreferences {
 	return userPreferences
 }
 
-func (a *App) GetHomePage() string {
-	// get data from store.txt, if any
-	userPref := getUserPreferences("store.json")
-	// render with the stored data, if any
-	if userPref != nil {
-		return render("html/pages/home.html", userPref)
-	} else {
-		fmt.Println("Error at GetHomePage() function")
+func (a *App) SaveUserPreferences(UserPreferences) bool {
+	file, err := os.Create(STORE_PATH)
+	if err != nil {
+		fmt.Println("ERROR on os.Create:", err)
+		return false
 	}
+	defer file.Close()
+
+	fmt.Fprintf(file, UserPreferences)
+	return true
+}
+
+func (a *App) GetHomePage() string {
+	// get data from store, if any
+	userPref := getUserPreferences(STORE_PATH)
+	// render with the stored data, if any
+	// if userPref != nil {
+	// 	return render("html/pages/home.html", userPref)
+	// } else {
+	// 	fmt.Println("Error at GetHomePage() function")
+	// }
+
+	return render("html/pages/home.html", userPref)
 }

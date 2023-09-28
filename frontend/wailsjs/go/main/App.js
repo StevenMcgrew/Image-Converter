@@ -5,3 +5,7 @@
 export function GetHomePage() {
   return window['go']['main']['App']['GetHomePage']();
 }
+
+export function SaveUserPreferences(arg1) {
+  return window['go']['main']['App']['SaveUserPreferences'](arg1);
+}
