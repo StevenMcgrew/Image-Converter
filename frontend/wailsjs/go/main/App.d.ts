@@ -4,4 +4,4 @@ import {main} from '../models';
 
 export function GetHomePage():Promise<string>;
 
-export function SaveUserPreferences(arg1:main.UserPreferences):Promise<boolean>;
+export function SaveUserPreferences(arg1:main.UserPreferences):Promise<void>;

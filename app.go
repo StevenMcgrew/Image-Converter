@@ -66,31 +66,27 @@ func getUserPreferences(path string) UserPreferences {
 	userPreferences := UserPreferences{}
 	json.Unmarshal(bytes, &userPreferences)
 	// figure out how to check if we get some json data,
-	// if no json data, return nil
+	// if no json data, handle in some way
 	return userPreferences
 }
 
-func (a *App) SaveUserPreferences(UserPreferences) bool {
+func (a *App) SaveUserPreferences(userPreferences UserPreferences) {
 	file, err := os.Create(STORE_PATH)
 	if err != nil {
 		fmt.Println("ERROR on os.Create:", err)
-		return false
+		return
 	}
 	defer file.Close()
 
-	fmt.Fprintf(file, UserPreferences)
-	return true
+	bytes, err := json.MarshalIndent(userPreferences, "", "\t")
+	if err != nil {
+		fmt.Println("ERROR on json.Marshal: ", err)
+		return
+	}
+	fmt.Fprint(file, string(bytes))
 }
 
 func (a *App) GetHomePage() string {
-	// get data from store, if any
 	userPref := getUserPreferences(STORE_PATH)
-	// render with the stored data, if any
-	// if userPref != nil {
-	// 	return render("html/pages/home.html", userPref)
-	// } else {
-	// 	fmt.Println("Error at GetHomePage() function")
-	// }
-
 	return render("html/pages/home.html", userPref)
 }

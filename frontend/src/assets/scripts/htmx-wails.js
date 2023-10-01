@@ -1095,6 +1095,9 @@
         }
 
         function selectAndSwap(swapStyle, target, elt, responseText, settleInfo, selectOverride) {
+            if (!responseText) {
+                responseText = ""
+            }
             settleInfo.title = findTitle(responseText);
             var fragment = makeFragment(responseText);
             if (fragment) {

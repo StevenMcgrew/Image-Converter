@@ -1,9 +1,11 @@
 import './app.css';
 
 import {
-    GetHomePage
+    GetHomePage,
+    SaveUserPreferences,
 } from '../wailsjs/go/main/App';
 
 htmx.myFunctions = {
-    GetHomePage
+    GetHomePage,
+    SaveUserPreferences,
 };

@@ -10,3 +10,10 @@
         </fieldset>
     </form>
 </div>
+<div>
+    <input id="resizeWidth" type="text">
+    <button hx-swap="none" hx-func="SaveUserPreferences" hx-vals='js:{
+        resizeWidth: Math.round(document.getElementById("resizeWidth").value)
+    }'>Save ResizeWidth</button>
+    ResizeWidth: {{.ResizeWidth}}
+</div>
